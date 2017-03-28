@@ -1,5 +1,4 @@
 function CCCMax = getCCC(SNP,q)
-%getCCC(randSNPGenerator(1000,.3,.1))
 
 [N, ~] = size(SNP);
 SNP1 = SNP(:,1:2);
