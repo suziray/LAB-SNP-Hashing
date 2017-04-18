@@ -1,27 +1,14 @@
-load('result');
-[s,~] = size(number);
+function CCCs = getCCCs(SNPs) %N samples, n SNPs
 
-minNum = 5000;
-SNP = [];
-N = 1000;
-
-
-for i = 1:s
-    if number(i,1) > minNum
-        SNP = [SNP randSNPGenerator(N,1-uniqueC(i,1))];
+[~,n] = size(SNPs);
+n = n / 2;
+CCCs = zeros(1, n*(n-1)/2);
+k = 1;
+for i = 1:n-1
+    for j = i+1:n
+        SNP1 = SNPs(:,2*i-1:2*i);
+        SNP2 = SNPs(:,2*j-1:2*j);
+        CCCs(1, k) = getCCC([SNP1 SNP2]);
+        k = k + 1;
     end
 end
-
-[~,s] = size(SNP);
-s = s/2;
-CCCs = [];
-
-for i = 1:s-1
-    disp(i);
-    for j = i+1:s
-        SNP1 = SNP(:,2*i-1:2*i);
-        SNP2 = SNP(:,2*j-1:2*j);
-        CCCs = [CCCs getCCC([SNP1 SNP2])];
-    end
-end
-
