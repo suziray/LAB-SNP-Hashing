@@ -1,4 +1,4 @@
-function g = aLSH(SNPs, c)
+function [h0, h1] = aLSH(SNPs)
 
 [d, n] = size(SNPs);
 m = 3;
@@ -9,7 +9,7 @@ N = 100;
 nSNPs = scaling(SNPs, U, n);
 qs = zeros(d + 2 * m, n);
 for i = 1:n
-    qs(:,i) = getQ(SNPs(:,i), m ,d);
+    qs(:,i) = getQ(nSNPs(:,i), m ,d);
 end
 ps = zeros(d + 2 * m, n);
 for i = 1:n
